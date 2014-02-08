@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:daddy pageNumber='1'>
 	<div class="col-lg-12">
@@ -8,38 +9,24 @@
 		<div class="row">
 			<div class="col-lg-12">
             <div class="well">
-              <form class="bs-example form-horizontal">
+              <form:form class="bs-example form-horizontal" modelAttribute="Pen" action="submitw" method="GET">
                 <fieldset>
                   <div class="form-group">
-                    <label for="textArea" class="col-lg-1 control-label">write</label>
+                    <form:label for="textArea" class="col-lg-1 control-label" path="write">write</form:label>
                     <div class="col-lg-11">
-                      <textarea class="form-control" rows="20" id="textArea"></textarea>
+                      <form:textarea class="form-control" rows="20" id="textArea" path="write"></form:textarea>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="price" class="col-lg-2 control-label">the reward</label>
+                    <form:label for="price" class="col-lg-2 control-label" path="reward">the reward</form:label>
                     <div class="col-lg-2">
-                      <input type="text" class="form-control" id="price" placeholder="price">
+                      <form:input type="text" class="form-control" id="price" placeholder="in bitcoins" path="reward" />
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Selects</label>
-                    <div class="col-lg-10">
-                      <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                      <br>
-                      <select multiple="" class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
+                    <form:label for="minentries" class="col-lg-2 control-label" path="minEntries">min entries</form:label>
+                    <div class="col-lg-2">
+                      <form:input type="text" class="form-control" id="minentries" placeholder="min entries"  path="minEntries"/>
                     </div>
                   </div>
                   <div class="form-group">
@@ -49,7 +36,7 @@
                     </div>
                   </div>
                 </fieldset>
-              </form>
+              </form:form>
             </div>
           </div>
 		</div>

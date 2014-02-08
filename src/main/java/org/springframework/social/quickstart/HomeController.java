@@ -20,10 +20,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -63,6 +65,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/pen", method = RequestMethod.GET)
 	public String pen(Model model) {
+		model.addAttribute("Pen", new Pen());
 		return "pen";
 	}
 	
@@ -85,6 +88,16 @@ public class HomeController {
 	public String signup(Model model) {
 		return "signup";
 	}
+	
+	
+	
+	@RequestMapping(value = "/submitw", method = RequestMethod.GET)
+	public String submitw(@ModelAttribute("Pen") Pen pen, BindingResult result, ModelMap model) {
+		System.out.println(pen.getWrite());
+		return "brush";
+	}
+	
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String home1(Model model) {

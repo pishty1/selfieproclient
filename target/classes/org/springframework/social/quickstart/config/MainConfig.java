@@ -15,6 +15,7 @@
  */
 package org.springframework.social.quickstart.config;
 
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -55,4 +56,5 @@ public class MainConfig {
 		populator.addScript(new ClassPathResource("JdbcUsersConnectionRepository.sql", JdbcUsersConnectionRepository.class));
 		return populator;
 	}
+	
 }

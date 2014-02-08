@@ -32,10 +32,8 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ProviderSignInController;
-import org.springframework.social.connect.web.SignInAdapter;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-import org.springframework.social.facebook.web.CanvasSignInController;
 import org.springframework.social.quickstart.user.SecurityContext;
 import org.springframework.social.quickstart.user.SimpleConnectionSignUp;
 import org.springframework.social.quickstart.user.SimpleSignInAdapter;
@@ -106,14 +104,4 @@ public class SocialConfig {
 				new SimpleSignInAdapter());
 	}
 	
-	@Bean
-	public SignInAdapter signInAdapter() {
-		return new SimpleSignInAdapter();
-	}
-	
-	@Bean
-	public CanvasSignInController canvasSignInController() {
-		return new CanvasSignInController(connectionFactoryLocator(), usersConnectionRepository(), signInAdapter(), environment.getProperty("facebook.clientId"), environment.getProperty("facebook.clientSecret"), environment.getProperty("facebook.canvasPage"));
-	}
-
 }

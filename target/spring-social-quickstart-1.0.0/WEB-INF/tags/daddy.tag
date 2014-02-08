@@ -13,25 +13,27 @@
 <body>
 
 	<div class="container">
-		<div class="navbar-header">
-			<a href="../" class="navbar-brand">Home</a>
-			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"> </span>
-			</button>
-		</div>
-
-		<div class="navbar-collapse collapse" id="navbar-main">
-			<ul class="nav navbar-nav">
-				<li class="${pageNumber == 1 ? 'active' : ''}"><a href="pen">Pen</a></li>
-				<li class="${pageNumber == 2 ? 'active' : ''}"><a href="brush">Brush</a></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li class="${pageNumber == 3 ? 'active' : ''}"><a href="account" >Account</a></li>
-				<li class="${pageNumber == 4 ? 'active' : ''}"><a href="signin">SignIn</a></li>
-				<li class="${pageNumber == 4 ? 'active' : ''}"><a href="signup">SignUp</a></li>
-			</ul>
-		</div>
+		<div class="navbar navbar-default">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="bidwithcoins">home</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="${pageNumber == 1 ? 'active' : ''}"><a href="pen" >pen</a></li>
+                    <li class="${pageNumber == 2 ? 'active' : ''}"><a href="brush" >brush</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                  	<li class="${pageNumber == 3 ? 'active' : ''}"><a href="account" >account</a></li>
+                    <li class="${pageNumber == 4 ? 'active' : ''}"><a href="sign" >signin</a></li>
+                    <li class="${pageNumber == 5 ? 'active' : ''}"><a href="signup" >signup</a></li>
+                  </ul>
+                </div><!-- /.nav-collapse -->
+              </div>
 	<jsp:doBody/>
 	</div>
 	<script src="resources/js/less.js" type="text/javascript"></script>
