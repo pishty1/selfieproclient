@@ -20,15 +20,26 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.social.quickstart.BrushService;
+import org.springframework.social.quickstart.FileService;
+import org.springframework.social.quickstart.PenService;
+import org.springframework.social.quickstart.UserService;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 /**
  * Main configuration class for the application.
@@ -36,8 +47,9 @@ import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
  * @author Keith Donald
  */
 @Configuration
-@ComponentScan(basePackages = "org.springframework.social.quickstart", excludeFilters = { @Filter(Configuration.class) })
+@ComponentScan(basePackages = "org.springframework.social.quickstart")
 @PropertySource("classpath:org/springframework/social/quickstart/config/application.properties")
+@EnableJpaRepositories("org.springframework.social.quickstart")
 public class MainConfig {
 
 	@Bean(destroyMethod = "shutdown")
@@ -56,5 +68,65 @@ public class MainConfig {
 		populator.addScript(new ClassPathResource("JdbcUsersConnectionRepository.sql", JdbcUsersConnectionRepository.class));
 		return populator;
 	}
+	
+	//Extras
+//	@Bean
+//    public DataSource dataSource() {
+//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+//    }
+
+	@Bean
+	public FileService fileService(){
+		return new FileService();
+	}
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(1000000);
+        return commonsMultipartResolver;
+    }
+	
+	@Bean
+	public PenService penService() {
+		PenService penService = new PenService();
+		return penService;
+	}
+	
+	@Bean
+	public UserService userService() {
+		UserService userService = new UserService();
+		return userService;
+	}
+	
+	@Bean
+	public BrushService brushService() {
+		BrushService brushService = new BrushService();
+		return brushService;
+	}
+	
+	@Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+        LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
+        lef.setDataSource(dataSource);
+        lef.setJpaVendorAdapter(jpaVendorAdapter);
+        lef.setPackagesToScan("org.springframework.social.quickstart");
+        return lef;
+    }
+	
+
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(false);
+        hibernateJpaVendorAdapter.setGenerateDdl(true);
+        hibernateJpaVendorAdapter.setDatabase(Database.H2);
+        return hibernateJpaVendorAdapter;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager();
+    }
 	
 }

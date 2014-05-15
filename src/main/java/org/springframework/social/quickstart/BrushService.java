@@ -1,8 +1,19 @@
 package org.springframework.social.quickstart;
 
-import org.springframework.stereotype.Service;
+import javax.inject.Inject;
 
-@Service
+
 public class BrushService {
+
+	@Inject
+	BrushRepository brushRepository;
+	
+	public Brush addBrush(Brush brush) {
+		return brushRepository.save(brush);
+	}
+	
+	public Brush getBrush(long id){
+		return brushRepository.findOne(id);
+	}
 
 }

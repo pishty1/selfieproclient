@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-lg-12">
             <div class="well">
-              <form:form class="bs-example form-horizontal" modelAttribute="Pen" action="submitw" method="GET">
+              <form:form class="bs-example form-horizontal" modelAttribute="Pen" action="submitPen" method="GET">
                 <fieldset>
                   <div class="form-group">
                     <form:label for="textArea" class="col-lg-1 control-label" path="write">write</form:label>

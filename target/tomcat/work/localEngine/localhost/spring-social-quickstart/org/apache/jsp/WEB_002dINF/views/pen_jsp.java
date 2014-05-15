@@ -114,7 +114,7 @@ public final class pen_jsp extends org.apache.jasper.runtime.HttpJspBase
     // /WEB-INF/views/pen.jsp(12,14) name = modelAttribute type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fform_005f0.setModelAttribute("Pen");
     // /WEB-INF/views/pen.jsp(12,14) name = action type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
-    _jspx_th_form_005fform_005f0.setAction("submitw");
+    _jspx_th_form_005fform_005f0.setAction("submitPen");
     // /WEB-INF/views/pen.jsp(12,14) name = method type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_form_005fform_005f0.setMethod("GET");
     int[] _jspx_push_body_count_form_005fform_005f0 = new int[] { 0 };
