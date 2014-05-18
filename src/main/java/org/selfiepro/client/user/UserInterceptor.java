@@ -18,6 +18,7 @@ package org.selfiepro.client.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -69,7 +70,8 @@ public final class UserInterceptor extends HandlerInterceptorAdapter {
 
 	private void handleSignOut(HttpServletRequest request, HttpServletResponse response) {
 		if (SecurityContext.userSignedIn() && request.getServletPath().startsWith("/signout")) {
-			connectionRepository.createConnectionRepository(SecurityContext.getCurrentUser().getId()).removeConnections("facebook");
+			ConnectionRepository conRep = connectionRepository.createConnectionRepository(SecurityContext.getCurrentUser().getId());
+			conRep.removeConnections("facebook");
 			userCookieGenerator.removeCookie(response);
 			SecurityContext.remove();			
 		}

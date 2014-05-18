@@ -21,14 +21,16 @@ import javax.sql.DataSource;
 import org.selfiepro.client.mvc.BrushService;
 import org.selfiepro.client.mvc.FileService;
 import org.selfiepro.client.mvc.PenService;
+import org.selfiepro.client.mvc.ProductService;
 import org.selfiepro.client.mvc.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
@@ -53,6 +55,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @EnableJpaRepositories("org.selfiepro.client.mvc")
 public class MainConfig {
 
+	@Value("WEB-INF/data.sql")
+	private Resource dataScript;
+	
 	@Bean(destroyMethod = "shutdown")
 	public DataSource dataSource() {
 		EmbeddedDatabaseFactory factory = new EmbeddedDatabaseFactory();
@@ -66,8 +71,8 @@ public class MainConfig {
 
 	private DatabasePopulator databasePopulator() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.addScript(dataScript);
 		populator.addScript(new ClassPathResource("JdbcUsersConnectionRepository.sql", JdbcUsersConnectionRepository.class));
-//		populator.setScripts(scripts);
 		return populator;
 	}
 	
@@ -93,6 +98,12 @@ public class MainConfig {
 	public PenService penService() {
 		PenService penService = new PenService();
 		return penService;
+	}
+	
+	@Bean
+	public ProductService productService() {
+		ProductService productService = new ProductService();
+		return productService;
 	}
 	
 	@Bean

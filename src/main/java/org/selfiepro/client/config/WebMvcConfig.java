@@ -40,7 +40,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new UserInterceptor(usersConnectionRepository));
+		registry.addInterceptor(new UserInterceptor(usersConnectionRepository)).addPathPatterns("/item/buy/**");
 	}
 	
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -1,24 +1,24 @@
-<%@ page session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-	<head>
-		<title>Home</title>
-	</head>
-	<body>
-	<ul>
-		<li><a href="<c:url value="/signout" />">Sign Out</a></li>
-	</ul>
-	<h3>Your Facebook Friends</h3>
-	<ul>
-	<c:forEach items="${friends}" var="friend">
-		<li>
-			<img src="http://graph.facebook.com/<c:out value="${friend.id}"/>/picture" align="middle"/><c:out value="${friend.name}"/>
-			<c:forEach items="${friend.extraData}" var="entry">
-<%--     		i		Key = ${entry.key}, value = ${entry.value}<br> --%>
-    				<c:out value="$$${entry.key}, ${entry.value}££"></c:out>
-			</c:forEach>
-		</li>
-	</c:forEach>
-	</ul>	
-	</body>
-</html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<t:daddy pageNumber='2'>
+	<div class="col-lg-12">
+		<div class="page-header">
+			<h1 id="navbar">Welcome To Our Store</h1>
+		</div>
+	</div>
+	<div class="bs-example">
+		<div class="bs-docs-section">
+			<div class="row">
+				<c:forEach var="product1" items="${products}" varStatus="counter">
+		          <div class="col-lg-4">
+		            <div class="bs-component well">
+		            	${product1.name}
+		            	<img alt="" src="${product1.imageUrl}">
+		            </div>
+		          </div>
+				</c:forEach>
+	        </div>
+		</div>
+	</div>
+</t:daddy>

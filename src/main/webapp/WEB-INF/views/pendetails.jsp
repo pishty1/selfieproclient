@@ -7,7 +7,7 @@
 			<h1 id="navbar">submit your work</h1>
 			<div class="row">
 				<div class="col-lg-2">
-					<form class="bs-example form-horizontal" action="${pageContext.request.contextPath}/submitBrush" method="POST" enctype="multipart/form-data">
+					<form class="bs-example form-horizontal" action="submitBrush" method="POST" enctype="multipart/form-data">
     					<input type="file" name="file">
     					<input type="text" hidden="true" name="penId" value="${Pen.id}">
 						<button type="submit" class="btn btn-primary">upload</button>
@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col-lg-12">
             <div class="well">
-              <form:form class="bs-example form-horizontal" modelAttribute="Pen" action="${pageContext.request.contextPath}/submitPen" method="GET">
+              <form:form class="bs-example form-horizontal" modelAttribute="Pen" action="submitPen" method="GET">
                 <fieldset>
                   <div class="form-group">
                     <form:label for="user" class="col-lg-1 control-label" path="user">user</form:label>

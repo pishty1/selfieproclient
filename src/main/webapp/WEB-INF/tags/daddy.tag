@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.css" />
 <link rel="stylesheet/less" type="text/css" href="<%=request.getContextPath()%>/resources/css/template.less" />
-<title>Let the bidding begin ...</title>
+<title>SelfiePro Client</title>
 </head>
 <body>
 
@@ -24,8 +24,8 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                   <ul class="nav navbar-nav">
-                    <li class="${pageNumber == 1 ? 'active' : ''}"><a href="<%=request.getContextPath()%>/pen" >pen</a></li>
-                    <li class="${pageNumber == 2 ? 'active' : ''}"><a href="<%=request.getContextPath()%>/brush" >brush</a></li>
+                    <li class="${pageNumber == 1 ? 'active' : ''}"><a href="/products" >products</a></li>
+                    <li class="${pageNumber == 2 ? 'active' : ''}"><a href="</contests" >contests</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                   	<li class="${pageNumber == 3 ? 'active' : ''}"><a href="<%=request.getContextPath()%>/account" >account</a></li>

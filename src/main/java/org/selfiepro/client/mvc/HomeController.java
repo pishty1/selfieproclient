@@ -17,16 +17,14 @@ package org.selfiepro.client.mvc;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.FeedOperations;
-import org.springframework.social.facebook.api.GeneralActions;
-import org.springframework.social.facebook.api.OpenGraphOperations;
 import org.springframework.social.facebook.api.Page;
-import org.springframework.social.facebook.api.PostData;
 import org.springframework.social.facebook.api.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,43 +53,69 @@ public class HomeController {
 	private final UserService userService;
 	private final BrushService brushService;
 	private final FileService fileService;
+	private final ProductService productService;
 	
 	private User user;
 	
 	@Inject
 	public HomeController(Facebook facebook, PenService penService, UserService userService, 
-			BrushService brushService, FileService fileService) {
+			BrushService brushService, FileService fileService, ProductService productService) {
 		this.facebook = facebook;
 		this.penService = penService;
 		this.userService = userService;
 		this.brushService = brushService;
 		this.fileService = fileService;
+		this.productService = productService;
+		this.productService.generateTestData();
 	}
 
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home(Model model) {
+//		List<Reference> friends = facebook.friendOperations().getFriends();
+//		FacebookProfile userProfile = facebook.userOperations().getUserProfile();
+//		
+//		if(userService.userExists(userProfile.getId())) {
+//			System.out.println("the user exist");
+//			userService.getUser(userProfile.getId());
+//		}else {
+//			System.out.println("the user doesnt exist");
+//			user = new User();
+//			user.setId(userProfile.getId());
+//			userService.saveUser(user);
+//		}
+//		
+//		System.out.println("firends size is " +friends.size() + " user id is =" + user.getId());
+////		int counter = 0;
+////		for (Reference reference : friends) {
+////			FacebookProfile userProfile = facebook.userOperations().getUserProfile(reference.getId());
+////			String email = userProfile.getEmail();
+////			System.out.println(counter++ + ") email is ====== " +email);
+////		}
+//		model.addAttribute("friends", friends);
+//		return "home";
+//	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		List<Reference> friends = facebook.friendOperations().getFriends();
-		FacebookProfile userProfile = facebook.userOperations().getUserProfile();
 		
-		if(userService.userExists(userProfile.getId())) {
-			System.out.println("the user exist");
-			userService.getUser(userProfile.getId());
-		}else {
-			System.out.println("the user doesnt exist");
-			user = new User();
-			user.setId(userProfile.getId());
-			userService.saveUser(user);
-		}
-		
-		System.out.println("firends size is " +friends.size() + " user id is =" + user.getId());
-//		int counter = 0;
-//		for (Reference reference : friends) {
-//			FacebookProfile userProfile = facebook.userOperations().getUserProfile(reference.getId());
-//			String email = userProfile.getEmail();
-//			System.out.println(counter++ + ") email is ====== " +email);
-//		}
-		model.addAttribute("friends", friends);
+		List<Product> products = productService.getProducts();
+		model.addAttribute("products", products);
 		return "home";
+	}
+	
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	public String products(Map<String, Object> model) {
+		List<Product> products = productService.getProducts();
+		model.put("products", products);
+		return "productshome";
+	}
+	
+	@RequestMapping(value = "/products/{id}/promote", method = RequestMethod.GET)
+	public String promoteProduct(@PathVariable("id") Integer prodId, Map<String, Object> model) {
+		Product product = productService.findProduct(prodId);
+		product.setStatus("promoted");
+		productService.saveProduct(product);
+		return "redirect:/products";
 	}
 	
 	@RequestMapping(value = "/bidwithcoins", method = RequestMethod.GET)

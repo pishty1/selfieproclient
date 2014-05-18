@@ -30,7 +30,7 @@ final class UserCookieGenerator {
 	private final CookieGenerator userCookieGenerator = new CookieGenerator();
 
 	public UserCookieGenerator() {
-		userCookieGenerator.setCookieName("SelfieclientCookie");
+		userCookieGenerator.setCookieName("SelfieProclientCookie");
 	}
 
 	public void addCookie(String userId, HttpServletResponse response) {
