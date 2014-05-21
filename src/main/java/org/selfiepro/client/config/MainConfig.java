@@ -45,7 +45,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
  * @author Keith Donald
  */
 @Configuration
-@ComponentScan(basePackages = "org.selfiepro.client")
+//@ComponentScan(basePackages = "org.selfiepro.client")
 @PropertySource("classpath:org/selfiepro/client/config/application.properties")
 @EnableJpaRepositories("org.selfiepro.client.mvc")
 public class MainConfig {

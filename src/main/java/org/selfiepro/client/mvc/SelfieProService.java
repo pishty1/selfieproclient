@@ -35,7 +35,7 @@ public class SelfieProService {
 	    HttpEntity<String> request = new HttpEntity<String>(jsonString, headers);
 	    HttpEntity<String> request2 = new HttpEntity<String>(headers);
 	    
-	    operations.exchange(URI.create(PRODUCTS_ADD), HttpMethod.POST, request , String.class);
+	    operations.postForEntity(URI.create(PRODUCTS_ADD), request , String.class);
 	    
 	    ResponseEntity<String> exchange = operations.exchange(URI.create(PRODUCTS_URL), HttpMethod.GET, request2 , String.class);
 	    

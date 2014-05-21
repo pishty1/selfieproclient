@@ -15,8 +15,6 @@
  */
 package org.selfiepro.client.config;
 
-import java.util.Arrays;
-
 import javax.inject.Inject;
 
 import org.selfiepro.client.user.UserInterceptor;
@@ -46,15 +44,18 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = "org.selfiepro.client")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
+	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new UserInterceptor(usersConnectionRepository)).addPathPatterns("/item/buy/**");
 	}
 	
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 	
 
+	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/signin");
 		registry.addViewController("/signout");
