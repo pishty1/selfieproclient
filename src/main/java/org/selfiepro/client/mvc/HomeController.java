@@ -55,17 +55,21 @@ public class HomeController {
 	private final FileService fileService;
 	private final ProductService productService;
 	
+	private final SelfieProService selfieProService;
+	
+	
 	private User user;
 	
 	@Inject
 	public HomeController(Facebook facebook, PenService penService, UserService userService, 
-			BrushService brushService, FileService fileService, ProductService productService) {
+			BrushService brushService, FileService fileService, ProductService productService, SelfieProService selfieProService) {
 		this.facebook = facebook;
 		this.penService = penService;
 		this.userService = userService;
 		this.brushService = brushService;
 		this.fileService = fileService;
 		this.productService = productService;
+		this.selfieProService = selfieProService;
 		this.productService.generateTestData();
 	}
 
@@ -105,6 +109,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String products(Map<String, Object> model) {
+		selfieProService.saveProduct("prod1", "ldjkf");
 		List<Product> products = productService.getProducts();
 		model.put("products", products);
 		return "productshome";

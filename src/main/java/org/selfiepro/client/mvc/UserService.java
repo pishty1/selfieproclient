@@ -2,6 +2,9 @@ package org.selfiepro.client.mvc;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserService {
 
 	@Inject

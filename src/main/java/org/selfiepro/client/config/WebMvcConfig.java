@@ -15,12 +15,19 @@
  */
 package org.selfiepro.client.config;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 
 import org.selfiepro.client.user.UserInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -62,5 +69,28 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	private @Inject UsersConnectionRepository usersConnectionRepository;
+	
+	
+	@Configuration
+	@EnableOAuth2Client
+	protected static class ResourceConfiguration {
+		
+		
+		@Bean
+		public OAuth2ProtectedResourceDetails trusted() {
+			ClientCredentialsResourceDetails details = new ClientCredentialsResourceDetails();
+			details.setId("sparklr/trusted");
+			details.setClientId("toto");
+			details.setClientSecret("passoword");
+			details.setGrantType("client_credentials");
+			details.setAccessTokenUri("http://selfiepro.herokuapp.com/oauth/token");
+			return details;
+		}
+		
+		@Bean
+		public OAuth2RestTemplate trustedClientRestTemplate() {
+			return new OAuth2RestTemplate(trusted(), new DefaultOAuth2ClientContext());
+		}
+	}
 
 }

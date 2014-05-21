@@ -18,11 +18,6 @@ package org.selfiepro.client.config;
 
 import javax.sql.DataSource;
 
-import org.selfiepro.client.mvc.BrushService;
-import org.selfiepro.client.mvc.FileService;
-import org.selfiepro.client.mvc.PenService;
-import org.selfiepro.client.mvc.ProductService;
-import org.selfiepro.client.mvc.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -75,17 +70,7 @@ public class MainConfig {
 		populator.addScript(new ClassPathResource("JdbcUsersConnectionRepository.sql", JdbcUsersConnectionRepository.class));
 		return populator;
 	}
-	
-	//Extras
-//	@Bean
-//    public DataSource dataSource() {
-//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
-//    }
 
-	@Bean
-	public FileService fileService(){
-		return new FileService();
-	}
 	
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
@@ -93,30 +78,6 @@ public class MainConfig {
         commonsMultipartResolver.setMaxUploadSize(1000000);
         return commonsMultipartResolver;
     }
-	
-	@Bean
-	public PenService penService() {
-		PenService penService = new PenService();
-		return penService;
-	}
-	
-	@Bean
-	public ProductService productService() {
-		ProductService productService = new ProductService();
-		return productService;
-	}
-	
-	@Bean
-	public UserService userService() {
-		UserService userService = new UserService();
-		return userService;
-	}
-	
-	@Bean
-	public BrushService brushService() {
-		BrushService brushService = new BrushService();
-		return brushService;
-	}
 	
 	@Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {

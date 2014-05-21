@@ -6,8 +6,10 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+@Service
 public class FileService {
 	
 	@Inject
