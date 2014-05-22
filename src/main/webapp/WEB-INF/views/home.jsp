@@ -4,21 +4,10 @@
 <t:daddy pageNumber='2'>
 	<div class="col-lg-12">
 		<div class="page-header">
-			<h1 id="navbar">Welcome To Our Store</h1>
-		</div>
-	</div>
-	<div class="bs-example">
-		<div class="bs-docs-section">
-			<div class="row">
-				<c:forEach var="product1" items="${products}" varStatus="counter">
-		          <div class="col-lg-4">
-		            <div class="bs-component well">
-		            	${product1.name}
-		            	<img alt="" src="${product1.imageUrl}">
-		            </div>
-		          </div>
-				</c:forEach>
-	        </div>
+			<h1 id="navbar">Welcome to our store</h1>
+			<h1 id="navbar">SelfiePro Demo</h1>
+			<h2 id="navbar">for customer demo; navigate to contest</h2> 
+			<h2 id="navbar">for admin demo; navigate to admin for contest creation and management</h2>
 		</div>
 	</div>
 </t:daddy>

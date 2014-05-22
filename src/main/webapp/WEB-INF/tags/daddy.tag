@@ -28,14 +28,29 @@
                     <li class="${pageNumber == 2 ? 'active' : ''}"><a href="</contests" >contests</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                  	<li class="${pageNumber == 3 ? 'active' : ''}"><a href="<%=request.getContextPath()%>/account" >account</a></li>
-                    <li class="${pageNumber == 4 ? 'active' : ''}"><a href="<%=request.getContextPath()%>/sign" >signin</a></li>
-                    <li class="${pageNumber == 5 ? 'active' : ''}"><a href="<%=request.getContextPath()%>/signup" >signup</a></li>
+                  	<li class="${pageNumber == 3 ? 'active' : ''} dropdown open">
+                  	<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="admin">admin <span class="caret"></span></a>
+                  	<ul class="dropdown-menu" aria-labelledby="admin">
+		                <li><a href="/default/">API details</a></li>
+		                <li class="divider"></li>
+		                <li><a href="/admin/promote">Promote products</a></li>
+		                <li><a href="/admin/contest/add">Create contests</a></li>
+		                <li><a href="/admin/contest/list">List Contests</a></li>
+              		</ul>
+                  	</li>
+                    <li class="${pageNumber == 4 ? 'active' : ''}"><a href="/sign" >signin</a></li>
+                    <li class="${pageNumber == 5 ? 'active' : ''}"><a href="/signup" >signup</a></li>
                   </ul>
                 </div><!-- /.nav-collapse -->
               </div>
 	<jsp:doBody/>
 	</div>
-	<script src="<%=request.getContextPath()%>/resources/js/less.js" type="text/javascript"></script>
+	<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+	<script src="/resources/js/dropdown.js" type="text/javascript"></script>
+	<script src="/resources/js/less.js" type="text/javascript"></script>
+	<script src="" type="text/javascript"></script>
+	<script>
+		$('.dropdown-toggle').dropdown();
+	</script>
 </body>
 </html>

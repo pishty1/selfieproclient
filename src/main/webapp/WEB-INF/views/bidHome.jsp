@@ -3,7 +3,9 @@
 <t:daddy pageNumber='0'>
 	<div class="col-lg-12">
 		<div class="page-header">
-			<h1 id="navbar">a picture in less than a thousand words</h1>
+			<h1 id="navbar">SelfiePro Demo</h1>
+			<h2 id="navbar">for customer demo; navigate to contest</h2> 
+			<h2 id="navbar">for admin demo; navigate to admin for contest creation and management</h2>
 		</div>
 	</div>
 </t:daddy>
