@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.selfiepro.client.mvc;
+package org.selfiepro.client.mvc.controllers;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.selfiepro.client.mvc.model.Product;
+import org.selfiepro.client.mvc.services.ProductService;
+import org.selfiepro.client.mvc.services.SelfieProService;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.Reference;

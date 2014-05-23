@@ -20,15 +20,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="bidwithcoins">home</a>
+                  <a class="navbar-brand" href="/">home</a>
                 </div>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                   <ul class="nav navbar-nav">
                     <li class="${pageNumber == 1 ? 'active' : ''}"><a href="/products" >products</a></li>
-                    <li class="${pageNumber == 2 ? 'active' : ''}"><a href="</contests" >contests</a></li>
+                    <li class="${pageNumber == 2 ? 'active' : ''}"><a href="/contests" >contests</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                  	<li class="${pageNumber == 3 ? 'active' : ''} dropdown open">
+                  	<li class="${pageNumber == 3 ? 'active' : ''} dropdown">
                   	<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="admin">admin <span class="caret"></span></a>
                   	<ul class="dropdown-menu" aria-labelledby="admin">
 		                <li><a href="/default/">API details</a></li>

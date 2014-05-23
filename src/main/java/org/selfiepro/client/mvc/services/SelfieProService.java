@@ -1,13 +1,15 @@
-package org.selfiepro.client.mvc;
+package org.selfiepro.client.mvc.services;
 
 import java.net.URI;
 
 import javax.inject.Inject;
 
+import org.selfiepro.client.mvc.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,6 @@ public class SelfieProService {
 	private RestTemplate operations;
 	
 
-	@SuppressWarnings("deprecation")
 	public String saveProduct(String name, String price) {
 		HttpHeaders headers = new HttpHeaders();
 	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -36,13 +37,21 @@ public class SelfieProService {
 	    HttpEntity<String> request2 = new HttpEntity<String>(headers);
 	    
 	    operations.postForEntity(URI.create(PRODUCTS_ADD), request , String.class);
-	    
 	    ResponseEntity<String> exchange = operations.exchange(URI.create(PRODUCTS_URL), HttpMethod.GET, request2 , String.class);
 	    
 	    System.out.println(exchange.getBody());
-//	    operations.postForEntity(URI.create(PRODUCTS_URL), param, byte[].class);
-//	    ResponseEntity<String> response = operations.exchange(PRODUCTS_URL, HttpMethod.POST, param, String.class);
 		return " ";
+	}
+	
+	public HttpStatus saveProduct(Product product){
+		HttpHeaders headers = new HttpHeaders();
+	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	    headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
+	    String jsonString = "{\"name\": \"%s\", \"price\": %s, \"exId\": %s}";
+	    String finalJson = String.format(jsonString, product.getName(), product.getPrice(), product.getId());
+	    HttpEntity<String> request = new HttpEntity<String>(finalJson, headers);
+	    ResponseEntity<String> responseEntity = operations.postForEntity(URI.create(PRODUCTS_ADD), request , String.class);
+	    return responseEntity.getStatusCode();
 	}
 
 	public RestOperations getOperations() {

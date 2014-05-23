@@ -1,4 +1,4 @@
-package org.selfiepro.client.mvc;
+package org.selfiepro.client.mvc.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ public class Product {
 	
 	private String name;
 	
-	private String price;
+	private double price;
 	
 	private String imageUrl;
 	
@@ -51,11 +51,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 }
