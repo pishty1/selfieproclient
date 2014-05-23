@@ -34,7 +34,7 @@
 		                <li><a href="/default/">API details</a></li>
 		                <li class="divider"></li>
 		                <li><a href="/admin/promote">Promote products</a></li>
-		                <li><a href="/admin/contest/add">Create contests</a></li>
+		                <li><a href="/admin/contests">Create contests</a></li>
 		                <li><a href="/admin/contest/list">List Contests</a></li>
               		</ul>
                   	</li>

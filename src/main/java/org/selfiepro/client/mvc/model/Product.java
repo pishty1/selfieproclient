@@ -4,20 +4,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 	
 	@Id
 	@GeneratedValue
+	@JsonProperty("exId")
 	private Integer id;
 	
 	private String name;
 	
 	private double price;
 	
+	@JsonProperty("id")
+	private Integer sfId;
+	
 	private String imageUrl;
 	
 	private String status;
+
+	
+	public Integer getSfId() {
+		return sfId;
+	}
+
+	public void setSfId(Integer sfId) {
+		this.sfId = sfId;
+	}
 
 	public String getStatus() {
 		return status;

@@ -81,7 +81,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		public OAuth2ProtectedResourceDetails trusted() {
 			ClientCredentialsResourceDetails details = new ClientCredentialsResourceDetails();
 			details.setId("sparklr/trusted");
-			details.setClientId("tata");
+			details.setClientId("toto");
 			details.setClientSecret("passoword");
 			details.setGrantType("client_credentials");
 			details.setAccessTokenUri("http://selfiepro.herokuapp.com/oauth/token");

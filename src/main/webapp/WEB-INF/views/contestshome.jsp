@@ -5,13 +5,13 @@
 <t:daddy pageNumber='1'>
 	<div class="col-lg-12">
 		<div class="page-header">
-			<h1 id="navbar">Inventory</h1>
+			<h1 id="navbar">Promoted Products pulled from Selfiepro server</h1>
 		</div>
 	</div>
 	<div class="bs-example">
 		<div class="bs-docs-section">
 			<div class="row">
-				<c:forEach var="product1" items="${products}" varStatus="counter">
+				<c:forEach var="product1" items="${sfProducts}" varStatus="counter">
 		          <div class="col-lg-12">
 		            <div class="well">
 		            	<div class="row">
@@ -21,15 +21,8 @@
 			            	<div class="col-lg-8">
 			            		<div class="row">
 			            			<h3>${product1.name}</h3>
-			            			<h4>product description</h4>
+			            			<h4>${product1.price}</h4>
 			            		</div>
-			            		<c:if test="${product1.status ne \"promoted\" }">
-				            		<div class="row">
-				            			<form action="/products/${product1.id}/promote" method="get">
-				            				<input type="submit" class="btn btn-danger btn-mini" value="Promote" />
-				            			</form>
-				            		</div>
-			            		</c:if>
 			            	</div>
 		            	</div>
 		            </div>

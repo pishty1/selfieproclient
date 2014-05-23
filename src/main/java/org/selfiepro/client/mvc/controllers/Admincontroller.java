@@ -47,5 +47,12 @@ public class Admincontroller {
 		return "redirect:/admin/promote";
 	}
 	
+	@RequestMapping(value = "/contests", method = RequestMethod.GET)
+	public String contestsHome(Model model) {
+		List<Product> products = proService.findAllPromotedProducts();
+		model.addAttribute("sfProducts", products);
+		return "contestshome";
+	}
+	
 	
 }

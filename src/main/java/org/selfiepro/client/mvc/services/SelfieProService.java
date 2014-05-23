@@ -1,17 +1,21 @@
 package org.selfiepro.client.mvc.services;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import org.selfiepro.client.mvc.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
@@ -19,9 +23,13 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class SelfieProService {
 
-	private static final String PRODUCTS_URL = "http://selfiepro.herokuapp.com/api/client/products/list";
+	private static final String BASE = "http://selfiepro.herokuapp.com/api/client/products/";
+
+	private static final String PRODUCTS_LIST = BASE + "list";
 	
-	private static final String PRODUCTS_ADD = "http://selfiepro.herokuapp.com/api/client/products/add";
+	private static final String PRODUCTS_ADD = BASE + "add";
+	
+	private static final String CONTESTS_ADD = BASE + "add";
 	
 	@Inject
 	@Qualifier("trustedClientRestTemplate")
@@ -37,7 +45,7 @@ public class SelfieProService {
 	    HttpEntity<String> request2 = new HttpEntity<String>(headers);
 	    
 	    operations.postForEntity(URI.create(PRODUCTS_ADD), request , String.class);
-	    ResponseEntity<String> exchange = operations.exchange(URI.create(PRODUCTS_URL), HttpMethod.GET, request2 , String.class);
+	    ResponseEntity<String> exchange = operations.exchange(URI.create(PRODUCTS_LIST), HttpMethod.GET, request2 , String.class);
 	    
 	    System.out.println(exchange.getBody());
 		return " ";
@@ -47,8 +55,8 @@ public class SelfieProService {
 		HttpHeaders headers = new HttpHeaders();
 	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 	    headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
-	    String jsonString = "{\"name\": \"%s\", \"price\": %s, \"exId\": %s}";
-	    String finalJson = String.format(jsonString, product.getName(), product.getPrice(), product.getId());
+	    String jsonString = "{\"name\": \"%s\", \"price\": %s, \"exId\": %s, \"imageUrl\": \"%s\"}";
+	    String finalJson = String.format(jsonString, product.getName(), product.getPrice(), product.getId(), product.getImageUrl());
 	    HttpEntity<String> request = new HttpEntity<String>(finalJson, headers);
 	    ResponseEntity<String> responseEntity = operations.postForEntity(URI.create(PRODUCTS_ADD), request , String.class);
 	    return responseEntity.getStatusCode();
@@ -60,5 +68,25 @@ public class SelfieProService {
 
 	public void setOperations(RestTemplate operations) {
 		this.operations = operations;
+	}
+
+	public List<Product> findAllPromotedProducts() {
+		HttpHeaders headers = new HttpHeaders();
+//	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	    headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
+	    HttpEntity<String> request = new HttpEntity<String>(headers);
+	    
+	    ParameterizedTypeReference<List<Product>> typeRef = new ParameterizedTypeReference<List<Product>>() {};
+	    ResponseEntity<List<Product>> exchange = operations.exchange(URI.create(PRODUCTS_LIST), HttpMethod.GET, request , typeRef);
+	    
+//	    System.out.println(exchange.getBody().toString());
+	    List<Product> sfProduct = exchange.getBody();
+	    System.out.println(sfProduct.size() + " products found");
+	    for (Product product : sfProduct) {
+	    	System.out.println("client's prod id  ----- \t" + product.getId());
+			System.out.println("client's prod name  -----\t" + product.getName());
+			System.out.println("SelfiePro's prod id  -----\t" + product.getSfId());
+		}
+		return sfProduct;
 	}
 }
