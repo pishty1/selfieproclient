@@ -9,6 +9,9 @@ import org.selfiepro.client.mvc.model.Product;
 import org.selfiepro.client.mvc.services.MainService;
 import org.selfiepro.client.mvc.services.SelfieProService;
 import org.springframework.http.HttpStatus;
+import org.springframework.social.facebook.api.Account;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.PagedList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +27,9 @@ public class Admincontroller {
 	
 	@Inject
 	private MainService mainService;
+	
+	@Inject
+	private Facebook facebook;
 	
 	
 	@RequestMapping(value = "/promote", method = RequestMethod.GET)
@@ -50,6 +56,11 @@ public class Admincontroller {
 	
 	@RequestMapping(value = "/contests", method = RequestMethod.GET)
 	public String contestsHome(Model model) {
+		
+		System.out.println("entering contests");
+		PagedList<Account> accounts = facebook.pageOperations().getAccounts();
+		accounts.forEach((Account a) -> System.out.println(a.getName()));
+		
 		List<Product> products = proService.findAllPromotedProducts();
 		Contest contest = new Contest();
 		model.addAttribute("contest", contest);

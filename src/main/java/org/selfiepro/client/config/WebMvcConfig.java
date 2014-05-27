@@ -46,7 +46,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new UserInterceptor(usersConnectionRepository)).addPathPatterns("/item/buy/**");
+		registry.addInterceptor(new UserInterceptor(usersConnectionRepository)).addPathPatterns("/admin/**");
 	}
 	
 	@Override
