@@ -5,15 +5,20 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.selfiepro.client.mvc.model.Contest;
 import org.selfiepro.client.mvc.model.Product;
+import org.selfiepro.client.mvc.repos.ContestRepository;
 import org.selfiepro.client.mvc.repos.ProductRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService {
+public class MainService {
 	
 	@Inject
 	ProductRepository repository;
+	
+	@Inject
+	ContestRepository contestRespository;
 	
 	
 	public List<Product> getProducts(){
@@ -26,7 +31,7 @@ public class ProductService {
 	}
 	
 	public void generateTestData() {
-		List<Product> products = new ArrayList<>();
+		List<Product> products = new ArrayList<Product>();
 		for (int i = 0; i < 7 ; i++){
 			Product product = new Product();
 			product.setName("Sunglasses" + i);
@@ -40,6 +45,11 @@ public class ProductService {
 
 	public Product findProduct(Integer prodId) {
 		return repository.findOne(prodId);
+	}
+	
+	
+	public Contest saveContest(Contest contest){
+		return contestRespository.save(contest);
 	}
 
 }

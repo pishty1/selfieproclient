@@ -84,7 +84,7 @@ public class MainConfig {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
         lef.setJpaVendorAdapter(jpaVendorAdapter);
-        lef.setPackagesToScan("org.selfiepro.client.mvc");
+        lef.setPackagesToScan("org.selfiepro.client.mvc.model");
         return lef;
     }
 	

@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.selfiepro.client.mvc.model.Contest;
 import org.selfiepro.client.mvc.model.Product;
-import org.selfiepro.client.mvc.services.ProductService;
+import org.selfiepro.client.mvc.services.MainService;
 import org.selfiepro.client.mvc.services.SelfieProService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,13 @@ public class Admincontroller {
 	private SelfieProService proService;
 	
 	@Inject
-	private ProductService productService;
+	private MainService mainService;
 	
 	
 	@RequestMapping(value = "/promote", method = RequestMethod.GET)
 	public String home(Model model) {
 		
-		List<Product> products = productService.getProducts();
+		List<Product> products = mainService.getProducts();
 		model.addAttribute("products", products);
 
 		return "promotehome";
@@ -36,12 +37,12 @@ public class Admincontroller {
 	
 	@RequestMapping(value = "/promote/{id}", method = RequestMethod.POST)
 	public String promoteProduct(@PathVariable("id") Integer prodId, Model model) {
-		Product product = productService.findProduct(prodId);
+		Product product = mainService.findProduct(prodId);
 		HttpStatus createStatus = proService.saveProduct(product);
 		
 		if(createStatus == HttpStatus.CREATED) {
 			product.setStatus("promoted");
-			productService.saveProduct(product);
+			mainService.saveProduct(product);
 		}
 		
 		return "redirect:/admin/promote";
@@ -49,6 +50,16 @@ public class Admincontroller {
 	
 	@RequestMapping(value = "/contests", method = RequestMethod.GET)
 	public String contestsHome(Model model) {
+		List<Product> products = proService.findAllPromotedProducts();
+		Contest contest = new Contest();
+		model.addAttribute("contest", contest);
+		model.addAttribute("sfProducts", products);
+		return "contestshome";
+	}
+	
+	@RequestMapping(value = "/contests/add", method = RequestMethod.GET)
+	public String addContests(Contest contest, Model model) {
+		proService.saveContest(contest);
 		List<Product> products = proService.findAllPromotedProducts();
 		model.addAttribute("sfProducts", products);
 		return "contestshome";

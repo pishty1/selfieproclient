@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.selfiepro.client.mvc.model.Contest;
 import org.selfiepro.client.mvc.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,8 +15,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.FormHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
@@ -62,31 +61,26 @@ public class SelfieProService {
 	    return responseEntity.getStatusCode();
 	}
 
-	public RestOperations getOperations() {
-		return operations;
-	}
-
-	public void setOperations(RestTemplate operations) {
-		this.operations = operations;
-	}
-
 	public List<Product> findAllPromotedProducts() {
 		HttpHeaders headers = new HttpHeaders();
-//	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 	    headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
 	    HttpEntity<String> request = new HttpEntity<String>(headers);
 	    
 	    ParameterizedTypeReference<List<Product>> typeRef = new ParameterizedTypeReference<List<Product>>() {};
 	    ResponseEntity<List<Product>> exchange = operations.exchange(URI.create(PRODUCTS_LIST), HttpMethod.GET, request , typeRef);
 	    
-//	    System.out.println(exchange.getBody().toString());
-	    List<Product> sfProduct = exchange.getBody();
-	    System.out.println(sfProduct.size() + " products found");
-	    for (Product product : sfProduct) {
-	    	System.out.println("client's prod id  ----- \t" + product.getId());
-			System.out.println("client's prod name  -----\t" + product.getName());
-			System.out.println("SelfiePro's prod id  -----\t" + product.getSfId());
-		}
-		return sfProduct;
+	    return exchange.getBody();
+	}
+	
+	public HttpStatus saveContest(Contest contest){
+		return null;
+	}
+	
+	public RestOperations getOperations() {
+		return operations;
+	}
+	
+	public void setOperations(RestTemplate operations) {
+		this.operations = operations;
 	}
 }

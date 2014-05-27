@@ -21,7 +21,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.selfiepro.client.mvc.model.Product;
-import org.selfiepro.client.mvc.services.ProductService;
+import org.selfiepro.client.mvc.services.MainService;
 import org.selfiepro.client.mvc.services.SelfieProService;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
@@ -43,12 +43,12 @@ public class HomeController {
 	
 
 	private final Facebook facebook;
-	private final ProductService productService;
+	private final MainService productService;
 	private final SelfieProService selfieProService;
 	
 	
 	@Inject
-	public HomeController(Facebook facebook, ProductService productService, SelfieProService selfieProService) {
+	public HomeController(Facebook facebook, MainService productService, SelfieProService selfieProService) {
 		this.facebook = facebook;
 		this.productService = productService;
 		this.selfieProService = selfieProService;

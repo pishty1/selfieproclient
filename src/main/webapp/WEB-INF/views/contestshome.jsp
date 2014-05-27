@@ -5,29 +5,50 @@
 <t:daddy pageNumber='1'>
 	<div class="col-lg-12">
 		<div class="page-header">
-			<h1 id="navbar">Promoted Products pulled from Selfiepro server</h1>
+			<h1 id="navbar">Create a contest for a product</h1>
 		</div>
 	</div>
 	<div class="bs-example">
 		<div class="bs-docs-section">
-			<div class="row">
-				<c:forEach var="product1" items="${sfProducts}" varStatus="counter">
-		          <div class="col-lg-12">
-		            <div class="well">
-		            	<div class="row">
-			            	<div class="col-lg-4">
-				            	<img alt="" src="${product1.imageUrl}">
-			            	</div>
-			            	<div class="col-lg-8">
-			            		<div class="row">
-			            			<h3>${product1.name}</h3>
-			            			<h4>${product1.price}</h4>
-			            		</div>
-			            	</div>
-		            	</div>
-		            </div>
-		          </div>
-				</c:forEach>
+	        <div class="row">
+		        <div class="col-lg-6">
+		        	<form:form action="/admin/contests/add" commandName="contest" method="post" class="form-horizontal">
+		        		<fieldset>
+	<%-- 						<c:if test='${errorMes eq "exists"}'> --%>
+	<!-- 							<div class="form-group"> -->
+	<!-- 								<div class="col-lg-11 col-lg-offset-1"> -->
+	<!-- 									<h2><span class="label label-warning">client name already exists</span></h2> -->
+	<!-- 								</div> -->
+	<!-- 							</div> -->
+	<%-- 						</c:if> --%>
+							<div class="form-group">
+								<form:label path="productId" for="productId" class="col-lg-3 control-label">Choose product</form:label>
+								<div class="col-lg-9">
+									<form:select class="form-control" path="productId" id="productId">
+										<form:options items="${sfProducts}" itemValue="id" itemLabel="name"/>		
+									</form:select>
+								</div>
+							</div>
+							<div class="form-group">
+								<form:label path="fbPageName" for="fbPageName" class="col-lg-3 control-label">page name</form:label>
+								<div class="col-lg-9">
+									<form:input class="form-control" path="fbPageName" data-validation="required" id="fbPageName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<form:label path="maxParticipants" for="maxParticipants" class="col-lg-3 control-label">max # participants</form:label>
+								<div class="col-lg-9">
+									<form:input path="maxParticipants" id="maxParticipants" class="form-control" data-validation="required"  />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-11 col-lg-offset-1">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</fieldset>
+		        	</form:form>
+		        </div>
 	        </div>
 		</div>
 	</div>
