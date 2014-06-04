@@ -57,23 +57,30 @@ public class Admincontroller {
 	@RequestMapping(value = "/contests", method = RequestMethod.GET)
 	public String contestsHome(Model model) {
 		
-		System.out.println("entering contests");
-		PagedList<Account> accounts = facebook.pageOperations().getAccounts();
-		accounts.forEach((Account a) -> System.out.println(a.getName()));
-		
+		PagedList<Account> accounts = facebook.pageOperations().getAccounts();		
 		List<Product> products = proService.findAllPromotedProducts();
 		Contest contest = new Contest();
+		
+		model.addAttribute("accounts", accounts);
 		model.addAttribute("contest", contest);
 		model.addAttribute("sfProducts", products);
+
 		return "contestshome";
 	}
 	
-	@RequestMapping(value = "/contests/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/contests/add", method = RequestMethod.POST)
 	public String addContests(Contest contest, Model model) {
-		proService.saveContest(contest);
-		List<Product> products = proService.findAllPromotedProducts();
-		model.addAttribute("sfProducts", products);
-		return "contestshome";
+		HttpStatus responseStatus = proService.saveContest(contest);
+		if(responseStatus == HttpStatus.CREATED) {
+			return "redirect:/admin/contests";
+		}
+		
+		return "someotherplace";
+	}
+	
+	@RequestMapping(value = "/contests/list", method = RequestMethod.GET)
+	public String listContest(Model model) {
+		return null;
 	}
 	
 	

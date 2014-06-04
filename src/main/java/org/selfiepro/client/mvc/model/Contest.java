@@ -3,8 +3,12 @@ package org.selfiepro.client.mvc.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Contest {
 	
 	@Id
@@ -17,8 +21,12 @@ public class Contest {
 
 	private int maxParticipants;
 	
+	private int currentParticipants;
+	
 	private Integer productId;
 	
+	@ManyToOne
+	private Product product;
 	
 	public Integer getId() {
 		return id;
@@ -58,5 +66,21 @@ public class Contest {
 
 	public void setMaxParticipants(int maxParticipants) {
 		this.maxParticipants = maxParticipants;
+	}
+
+	public Product getProduct() {
+	    return product;
+	}
+
+	public void setProduct(Product product) {
+	    this.product = product;
+	}
+
+	public int getCurrentParticipants() {
+	    return currentParticipants;
+	}
+
+	public void setCurrentParticipants(int currentParticipants) {
+	    this.currentParticipants = currentParticipants;
 	}
 }

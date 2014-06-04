@@ -25,14 +25,22 @@
 								<form:label path="productId" for="productId" class="col-lg-3 control-label">Choose product</form:label>
 								<div class="col-lg-9">
 									<form:select class="form-control" path="productId" id="productId">
-										<form:options items="${sfProducts}" itemValue="id" itemLabel="name"/>		
+										<form:options items="${sfProducts}" itemValue="sfId" itemLabel="name"/>		
 									</form:select>
 								</div>
 							</div>
 							<div class="form-group">
 								<form:label path="fbPageName" for="fbPageName" class="col-lg-3 control-label">page name</form:label>
 								<div class="col-lg-9">
-									<form:input class="form-control" path="fbPageName" data-validation="required" id="fbPageName" />
+									<form:select class="form-control" path="fbPageName" id="fbPageName">
+										<form:options items="${accounts}" itemValue="id" itemLabel="name"/>		
+									</form:select>
+								</div>
+							</div>
+							<div class="form-group">
+								<form:label path="name" for="name" class="col-lg-3 control-label">name</form:label>
+								<div class="col-lg-9">
+									<form:input path="name" id="name" class="form-control" data-validation="required"  />
 								</div>
 							</div>
 							<div class="form-group">
@@ -42,7 +50,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-lg-11 col-lg-offset-1">
+								<div class="col-lg-9 col-lg-offset-3">
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
 							</div>

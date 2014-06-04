@@ -1,8 +1,12 @@
 package org.selfiepro.client.mvc.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,7 +30,10 @@ public class Product {
 	private String imageUrl;
 	
 	private String status;
-
+	
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private List<Contest> contest;
+	
 	
 	public Integer getSfId() {
 		return sfId;
@@ -74,5 +81,13 @@ public class Product {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public List<Contest> getContest() {
+	    return contest;
+	}
+
+	public void setContest(List<Contest> contest) {
+	    this.contest = contest;
 	}
 }
