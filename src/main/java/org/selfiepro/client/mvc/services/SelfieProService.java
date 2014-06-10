@@ -4,15 +4,19 @@ import org.selfiepro.client.mvc.model.Contest;
 import org.selfiepro.client.mvc.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
-
-import javax.inject.Inject;
 
 import java.net.URI;
 import java.util.List;
+
+import javax.inject.Inject;
 
 @Service
 public class SelfieProService {
@@ -27,27 +31,12 @@ public class SelfieProService {
   private static final String CONTESTS_ADD = PROD + "%s/contests/add";
   private static final String CONTEST = BASE + "contests/";
   private static final String CONTESTS_LIST = CONTEST + "list";
-  private static final String PARTICIPANT_ADD = CONTEST;
+  private static final String PARTICIPANT_ADD = CONTEST + "%s/participant/add";
 
   @Inject
   @Qualifier("trustedClientRestTemplate")
   private RestTemplate operations;
 
-  public String saveProduct(String name, String price) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-    headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
-    String jsonString = "{\"name\": \"prod2\"}";
-    HttpEntity<String> request = new HttpEntity<>(jsonString, headers);
-    HttpEntity<String> request2 = new HttpEntity<>(headers);
-
-    operations.postForEntity(URI.create(PRODUCTS_ADD), request, String.class);
-    ResponseEntity<String> exchange = operations.exchange(URI.create(PRODUCTS_LIST), HttpMethod.GET, request2,
-                                                          String.class);
-
-    System.out.println(exchange.getBody());
-    return " ";
-  }
 
   public HttpStatus saveProduct(Product product) {
     HttpHeaders headers = new HttpHeaders();
@@ -67,9 +56,12 @@ public class SelfieProService {
     headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
     headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
     String jsonString = "{\"name\": \"%s\", \"fbPageName\": \"%s\", \"maxParticipants\": %s}";
-    String finalJson = String.format(jsonString, contest.getName(), contest.getFbPageName(),
-                                     contest.getMaxParticipants());
-    HttpEntity<String> request = new HttpEntity<>(finalJson, headers);
+
+    String objectJson = String.format(jsonString, contest.getName(), contest.getFbPageName(),
+                                      contest.getMaxParticipants());
+
+    HttpEntity<String> request = new HttpEntity<>(objectJson, headers);
+
     ResponseEntity<String> responseEntity = operations.postForEntity(URI.create(contestAdd), request, String.class);
     return responseEntity.getStatusCode();
   }
@@ -100,24 +92,21 @@ public class SelfieProService {
     return exchange.getBody();
   }
 
-  public void enterContest(Integer contestId, Integer partId) {
+  public HttpStatus enterContest(Integer contestId, Integer partId) {
 
     HttpHeaders headers = new HttpHeaders();
+    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
     headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
-    HttpEntity<String> request = new HttpEntity<>(headers);
 
-    ResponseEntity<String> exchange = operations.exchange(URI.create(CONTESTS_LIST), HttpMethod.GET,
-                                                          request, String.class);
+    String jsonString = "{\"fname\": \"%s\", \"lname\": \"%s\", \"facebookId\" : %s}";
 
+    HttpEntity<String> request = new HttpEntity<>(jsonString, headers);
 
+    String url = String.format(PARTICIPANT_ADD, contestId);
 
+    ResponseEntity<String> exchange = operations.postForEntity(URI.create(url),
+                                                               request, String.class);
+    return exchange.getStatusCode();
   }
 
-  public RestOperations getOperations() {
-    return operations;
-  }
-
-  public void setOperations(RestTemplate operations) {
-    this.operations = operations;
-  }
 }

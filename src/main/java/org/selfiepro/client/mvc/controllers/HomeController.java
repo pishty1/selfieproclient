@@ -105,6 +105,7 @@ public class HomeController {
   public String account(Model model) {
     FacebookProfile userProfile = facebook.userOperations().getUserProfile();
     model.addAttribute("userName", userProfile.getName());
+
     return "account";
   }
 
