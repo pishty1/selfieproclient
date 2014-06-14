@@ -21,7 +21,7 @@
 			            	<div class="col-lg-4">
 			            		<div class="row">
 			            			<h3>contest name: ${contest.name}</h3>
-			            			<h4>product description</h4>
+			            			<h4>product description:</h4>
 			            		</div>
 			            		<div class="row">
 			            			<h3>${contest.currentParticipants}/${contest.maxParticipants}</h3>
