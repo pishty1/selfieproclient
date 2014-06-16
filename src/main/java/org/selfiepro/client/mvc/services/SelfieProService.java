@@ -99,6 +99,8 @@ public class SelfieProService {
     headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
 
     String jsonString = "{\"fname\": \"%s\", \"lname\": \"%s\", \"facebookId\" : %s}";
+    String postString = String.format(jsonString, "fname", "lname", partId);
+    
 
     HttpEntity<String> request = new HttpEntity<>(jsonString, headers);
 

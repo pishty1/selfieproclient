@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<% @taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<% @taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% @taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <t:daddy pageNumber='2'>
 	<div class="col-lg-12">
 		<div class="page-header">
