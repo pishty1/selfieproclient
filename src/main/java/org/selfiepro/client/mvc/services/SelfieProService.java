@@ -100,9 +100,9 @@ public class SelfieProService {
 
     String jsonString = "{\"fname\": \"%s\", \"lname\": \"%s\", \"facebookId\" : %s}";
     String postString = String.format(jsonString, "fname", "lname", partId);
-    
 
-    HttpEntity<String> request = new HttpEntity<>(jsonString, headers);
+
+    HttpEntity<String> request = new HttpEntity<>(postString, headers);
 
     String url = String.format(PARTICIPANT_ADD, contestId);
 
