@@ -21,7 +21,7 @@
 			            	
 			            	<div class="col-lg-4">
 			            		<div class="row">
-			            			<a href="/contest/${contestId}/part/${fbUserId}" ><button type="button" class="btn btn-primary btn-lg">Buy and Enter contest</button></a>
+			            			<a href="/contests/${contestId}/part/${fbUserId}" ><button type="button" class="btn btn-primary btn-lg">Buy and Enter contest</button></a>
 			            		</div>
 			            	</div>
 		            	</div>

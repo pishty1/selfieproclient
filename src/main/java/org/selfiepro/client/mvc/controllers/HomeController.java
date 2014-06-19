@@ -98,7 +98,7 @@ public class HomeController {
   @RequestMapping(value = "/contests/{contid}/part/{partid}", method = RequestMethod.GET)
   public String enterContest(@PathVariable("contid") Integer contestId, @PathVariable("partid") Integer partId, Model model) {
     selfieProService.enterContest(contestId, partId);
-    return null;
+    return "redirect:/contests/" + contestId;
   }
 
   @RequestMapping(value = "/account", method = RequestMethod.GET)

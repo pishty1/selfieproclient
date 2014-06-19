@@ -31,7 +31,7 @@ public class SelfieProService {
   private static final String CONTESTS_ADD = PROD + "%s/contests/add";
   private static final String CONTEST = BASE + "contests/";
   private static final String CONTESTS_LIST = CONTEST + "list";
-  private static final String PARTICIPANT_ADD = CONTEST + "%s/participant/add";
+  private static final String PARTICIPANT_ADD = CONTEST + "%s/participants/add";
 
   @Inject
   @Qualifier("trustedClientRestTemplate")

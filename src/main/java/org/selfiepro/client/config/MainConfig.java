@@ -48,6 +48,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @PropertySource("classpath:org/selfiepro/client/config/application.properties")
 @EnableJpaRepositories("org.selfiepro.client.mvc")
 public class MainConfig {
+  
 
 	@Value("WEB-INF/data.sql")
 	private Resource dataScript;
