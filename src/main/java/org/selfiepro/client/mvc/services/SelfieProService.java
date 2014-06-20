@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -92,14 +93,17 @@ public class SelfieProService {
     return exchange.getBody();
   }
 
-  public HttpStatus enterContest(Integer contestId, Integer partId) {
+  public HttpStatus enterContest(Integer contestId, Facebook facebook) {
 
     HttpHeaders headers = new HttpHeaders();
     headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
     headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
 
     String jsonString = "{\"fname\": \"%s\", \"lname\": \"%s\", \"facebookId\" : %s}";
-    String postString = String.format(jsonString, "fname", "lname", partId);
+    String postString = String.format(jsonString, 
+                                      facebook.userOperations().getUserProfile().getFirstName(), 
+                                      facebook.userOperations().getUserProfile().getLastName(), 
+                                      facebook.userOperations().getUserProfile().getId());
 
 
     HttpEntity<String> request = new HttpEntity<>(postString, headers);
