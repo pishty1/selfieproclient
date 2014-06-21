@@ -33,6 +33,7 @@ public class SelfieProService {
   private static final String CONTEST = BASE + "contests/";
   private static final String CONTESTS_LIST = CONTEST + "list";
   private static final String PARTICIPANT_ADD = CONTEST + "%s/participants/add";
+  private static final String CONTEST_BY_PART = BASE + "part/%s";
 
   @Inject
   @Qualifier("trustedClientRestTemplate")
@@ -101,7 +102,7 @@ public class SelfieProService {
 
     String jsonString = "{\"fname\": \"%s\","
                       + " \"lname\": \"%s\", "
-                      + "\"facebookId\" : %s}";
+                      + "\"facebookId\" : \"%s\"}";
     String postString = String.format(jsonString, 
                                       facebook.userOperations().getUserProfile().getFirstName(), 
                                       facebook.userOperations().getUserProfile().getLastName(), 
@@ -115,6 +116,19 @@ public class SelfieProService {
     ResponseEntity<String> exchange = operations.postForEntity(URI.create(url),
                                                                request, String.class);
     return exchange.getStatusCode();
+  }
+
+  public List<Contest> findContestsByFbId(String id) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
+    HttpEntity<String> request = new HttpEntity<>(headers);
+
+    ParameterizedTypeReference<List<Contest>> typeRef = new ParameterizedTypeReference<List<Contest>>() {};
+    
+    ResponseEntity<List<Contest>> exchange = operations.exchange(URI.create(CONTEST_BY_PART), HttpMethod.GET,
+                                                                 request, typeRef);
+
+    return exchange.getBody();
   }
 
 }
