@@ -87,13 +87,13 @@ public class HomeController {
     return "showcontests";
   }
   
-  @RequestMapping(value = "/mycontests/list", method = RequestMethod.GET)
+  @RequestMapping(value = "/mycontests", method = RequestMethod.GET)
   public String showMyContests(Model model) {
     
     List<Contest> contests = selfieProService.findContestsByFbId(facebook.userOperations().getUserProfile().getId());
     model.addAttribute("contests", contests);
     
-    return "showcontests";
+    return "mycontests";
   }
   
   
