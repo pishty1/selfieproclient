@@ -5,7 +5,7 @@
 <t:daddy pageNumber='2'>
 	<div class="col-lg-12">
 		<div class="page-header">
-			<h1 id="navbar">Current Contests</h1>
+			<h1 id="navbar">My Contests!!!</h1>
 		</div>
 	</div>
 	<div class="bs-example">
@@ -30,7 +30,7 @@
 			            	</div>
 			            	<div class="col-lg-4">
 			            		<div class="row">
-			            			<a href="/contests/${contest.id}" ><button type="button" class="btn btn-primary btn-lg">Buy and Enter contest</button></a>
+			            			<a href="/contests/${contest.id}" ><button type="button" class="btn btn-primary btn-lg">look at competing participants</button></a>
 			            		</div>
 			            	</div>
 		            	</div>
