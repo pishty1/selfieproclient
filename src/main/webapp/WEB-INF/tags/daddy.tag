@@ -38,6 +38,7 @@
 		                <li><a href="/admin/contest/list">List Contests</a></li>
               		</ul>
                   	</li>
+                  	<li class="${pageNumber == 6 ? 'active' : ''}"><a href="/mycontests" >my contests</a></li>
                     <li class="${pageNumber == 4 ? 'active' : ''}"><a href="/sign" >signin</a></li>
                     <li class="${pageNumber == 5 ? 'active' : ''}"><a href="/signup" >signup</a></li>
                   </ul>
