@@ -33,7 +33,7 @@ public class SelfieProService {
   private static final String CONTEST = BASE + "contests/";
   private static final String CONTESTS_LIST = CONTEST + "list";
   private static final String PARTICIPANT_ADD = CONTEST + "%s/participants/add";
-  private static final String CONTEST_BY_PART = BASE + "part/%s";
+  private static final String CONTESTS_BY_PART = BASE + "part/%s";
 
   @Inject
   @Qualifier("trustedClientRestTemplate")
@@ -125,7 +125,7 @@ public class SelfieProService {
 
     ParameterizedTypeReference<List<Contest>> typeRef = new ParameterizedTypeReference<List<Contest>>() {};
     
-    ResponseEntity<List<Contest>> exchange = operations.exchange(URI.create(CONTEST_BY_PART), HttpMethod.GET,
+    ResponseEntity<List<Contest>> exchange = operations.exchange(URI.create(CONTESTS_BY_PART), HttpMethod.GET,
                                                                  request, typeRef);
 
     return exchange.getBody();
