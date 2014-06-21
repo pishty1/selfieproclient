@@ -99,7 +99,9 @@ public class SelfieProService {
     headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
     headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
 
-    String jsonString = "{\"fname\": \"%s\", \"lname\": \"%s\", \"facebookId\" : %s}";
+    String jsonString = "{\"fname\": \"%s\","
+                      + " \"lname\": \"%s\", "
+                      + "\"facebookId\" : %s}";
     String postString = String.format(jsonString, 
                                       facebook.userOperations().getUserProfile().getFirstName(), 
                                       facebook.userOperations().getUserProfile().getLastName(), 
