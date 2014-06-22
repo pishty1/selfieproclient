@@ -122,10 +122,12 @@ public class SelfieProService {
     HttpHeaders headers = new HttpHeaders();
     headers.add("Content-type", MediaType.APPLICATION_JSON_VALUE);
     HttpEntity<String> request = new HttpEntity<>(headers);
+    
+    String url = String.format(CONTESTS_BY_PART, id);
 
     ParameterizedTypeReference<List<Contest>> typeRef = new ParameterizedTypeReference<List<Contest>>() {};
     
-    ResponseEntity<List<Contest>> exchange = operations.exchange(URI.create(CONTESTS_BY_PART), HttpMethod.GET,
+    ResponseEntity<List<Contest>> exchange = operations.exchange(URI.create(url), HttpMethod.GET,
                                                                  request, typeRef);
 
     return exchange.getBody();
