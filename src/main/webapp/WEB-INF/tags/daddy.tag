@@ -28,6 +28,7 @@
                     <li class="${pageNumber == 2 ? 'active' : ''}"><a href="/contests" >contests</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                  	<li class="${pageNumber == 6 ? 'active' : ''}"><a href="/mycontests" >my contests</a></li>
                   	<li class="${pageNumber == 3 ? 'active' : ''} dropdown">
                   	<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="admin">admin <span class="caret"></span></a>
                   	<ul class="dropdown-menu" aria-labelledby="admin">
@@ -38,7 +39,6 @@
 		                <li><a href="/admin/contest/list">List Contests</a></li>
               		</ul>
                   	</li>
-                  	<li class="${pageNumber == 6 ? 'active' : ''}"><a href="/mycontests" >my contests</a></li>
                     <li class="${pageNumber == 4 ? 'active' : ''}"><a href="/sign" >signin</a></li>
                     <li class="${pageNumber == 5 ? 'active' : ''}"><a href="/signup" >signup</a></li>
                   </ul>

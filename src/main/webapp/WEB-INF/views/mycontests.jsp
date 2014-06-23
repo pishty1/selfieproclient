@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<t:daddy pageNumber='2'>
+<t:daddy pageNumber='6'>
 	<div class="col-lg-12">
 		<div class="page-header">
 			<h1 id="navbar">My Contests!!!</h1>

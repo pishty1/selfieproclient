@@ -24,7 +24,7 @@
 			            			<h4>product description:</h4>
 			            		</div>
 			            		<div class="row">
-			            			<h3>${contest.currentParticipants}/${contest.maxParticipants}</h3>
+			            			<h3>${contest.currentParticipants} / ${contest.maxParticipants}</h3>
 			            			
 			            		</div>
 			            	</div>
