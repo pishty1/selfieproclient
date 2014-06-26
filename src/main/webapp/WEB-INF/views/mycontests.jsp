@@ -30,7 +30,7 @@
 			            	</div>
 			            	<div class="col-lg-4">
 			            		<div class="row">
-			            			<a href="/contests/${contest.id}" ><button type="button" class="btn btn-primary btn-lg">look at competing participants</button></a>
+			            			<a href="/contests/${contest.id}" ><button type="button" class="btn btn-info btn-lg">look at competing participants</button></a>
 			            		</div>
 			            	</div>
 		            	</div>
