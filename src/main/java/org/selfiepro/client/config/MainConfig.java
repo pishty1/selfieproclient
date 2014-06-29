@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
@@ -35,7 +36,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -44,9 +44,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
  * Turns on @Component scanning, loads externalized application.properties, and sets up the database.
  * @author Keith Donald
  */
-@Component
 @Configuration
-//@ComponentScan(basePackages = "org.selfiepro.client")
+@ComponentScan(basePackages = "org.selfiepro.client")
 @PropertySource("classpath:org/selfiepro/client/config/application.properties")
 @EnableJpaRepositories("org.selfiepro.client.mvc")
 public class MainConfig {
