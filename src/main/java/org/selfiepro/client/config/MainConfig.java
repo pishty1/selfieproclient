@@ -35,6 +35,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -43,6 +44,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
  * Turns on @Component scanning, loads externalized application.properties, and sets up the database.
  * @author Keith Donald
  */
+@Component
 @Configuration
 //@ComponentScan(basePackages = "org.selfiepro.client")
 @PropertySource("classpath:org/selfiepro/client/config/application.properties")
