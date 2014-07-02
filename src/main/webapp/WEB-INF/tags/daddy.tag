@@ -13,8 +13,8 @@
 <body>
 
 	<div class="container">
-		<div class="navbar navbar-default">
-                <div class="navbar-header" role="navigation">
+		<div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
