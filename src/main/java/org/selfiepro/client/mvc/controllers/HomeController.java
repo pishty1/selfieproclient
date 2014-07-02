@@ -82,7 +82,6 @@ public class HomeController {
   @RequestMapping(value = "/contests", method = RequestMethod.GET)
   public String showContests(Model model) {
     List<Contest> contests = selfieProService.findAllContests();
-    contests.forEach((Contest contest) -> System.out.println(contest.getName()));
     model.addAttribute("contests", contests);
     return "showcontests";
   }
