@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.css" />
-<link rel="stylesheet/less" type="text/css" href="<%=request.getContextPath()%>/resources/css/template.less" />
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css" />
+<link rel="stylesheet/less" type="text/css" href="/resources/css/template.less" />
 <title>SelfiePro Client</title>
 </head>
 <body>
@@ -46,7 +46,7 @@
               </div>
 	<jsp:doBody/>
 	</div>
-	<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+	<script src="/code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 	<script src="/resources/js/dropdown.js" type="text/javascript"></script>
 	<script src="/resources/js/less.js" type="text/javascript"></script>
 	<script src="" type="text/javascript"></script>
