@@ -46,9 +46,10 @@
               </div>
 	<jsp:doBody/>
 	</div>
-	<script src="/code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 	<script src="/resources/js/dropdown.js" type="text/javascript"></script>
 	<script src="/resources/js/less.js" type="text/javascript"></script>
+	<script src="/resources/js/offcanvas.js" type="text/javascript"></script>
 	<script src="" type="text/javascript"></script>
 	<script>
 		$('.dropdown-toggle').dropdown();
