@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css" />
 <link rel="stylesheet/less" type="text/css" href="/resources/css/template.less" />
-<link rel="stylesheet/less" type="text/css" href="/resources/css/offcanvas.less" />
+<link rel="stylesheet/less" type="text/css" href="/resources/css/offcanvas.css" />
 <title>SelfiePro Client</title>
 </head>
 <body>
