@@ -14,7 +14,7 @@
 <body>
 
 	<div class="container">
-		<div class="navbar navbar-default" role="navigation">
+		<div class="navbar navbar-default">
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                     <span class="icon-bar"></span>
@@ -23,7 +23,7 @@
                   </button>
                   <a class="navbar-brand" href="/">home</a>
                 </div>
-                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
                   <ul class="nav navbar-nav">
                     <li class="${pageNumber == 1 ? 'active' : ''}"><a href="/products" >products</a></li>
                     <li class="${pageNumber == 2 ? 'active' : ''}"><a href="/contests" >contests</a></li>
