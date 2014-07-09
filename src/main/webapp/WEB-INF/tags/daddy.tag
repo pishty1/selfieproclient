@@ -9,21 +9,26 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css" />
 <link rel="stylesheet/less" type="text/css" href="/resources/css/template.less" />
 <link rel="stylesheet/less" type="text/css" href="/resources/css/offcanvas.css" />
+<style type="text/css">
+	.navbar{
+		margin-top: 20px;
+	}
+</style>
 <title>SelfiePro Client</title>
 </head>
 <body>
 
 	<div class="container">
-		<div class="navbar navbar-default">
+		<div class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
                   <a class="navbar-brand" href="/">home</a>
                 </div>
-                <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
+                <div class="collapse navbar-collapse" id="navbarCollapse">
                   <ul class="nav navbar-nav">
                     <li class="${pageNumber == 1 ? 'active' : ''}"><a href="/products" >products</a></li>
                     <li class="${pageNumber == 2 ? 'active' : ''}"><a href="/contests" >contests</a></li>
@@ -51,9 +56,11 @@
 	<script src="/resources/js/dropdown.js" type="text/javascript"></script>
 	<script src="/resources/js/less.js" type="text/javascript"></script>
 	<script src="/resources/js/offcanvas.js" type="text/javascript"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="" type="text/javascript"></script>
 	<script>
 		$('.dropdown-toggle').dropdown();
 	</script>
+	
 </body>
 </html>
